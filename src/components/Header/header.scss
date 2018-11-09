@@ -1,0 +1,36 @@
+.userInfo{
+    padding-right: 60px;
+    border-bottom:1px solid #f9c700;
+    overflow: hidden;
+}
+.username{
+    color: #f9c700;
+    font-size: 14px;
+    line-height: 60px;
+    padding: 0 20px;
+}
+.weather-warp{
+    padding-right: 60px;
+    line-height: 40px;
+    .date{
+        padding-right: 40px;
+    }
+}
+.icon{
+    position: relative;
+    width: 17.5%;
+    font-size: 18px;
+    text-align: center;
+    &::after{
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -24px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border: 12px solid transparent;
+        border-top: 12px solid #fff;
+    }
+}

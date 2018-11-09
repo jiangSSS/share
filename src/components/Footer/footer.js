@@ -9,8 +9,8 @@ const MenuItemGroup = Menu.ItemGroup;
 class Footer extends Component {
     render() {
         return (
-            <div className="nav-left">
-                我是底部11111
+            <div className="footer">
+                版权所有: --HuaShan--
             </div>
         )
     }

@@ -8,9 +8,9 @@
 .clearfix{
     &::after{
         content:"";
-        clear: both;
         display: block;
-        visibility: hidden;
+        clear: both;
+        overflow: hidden;
     }
 }
 *{
