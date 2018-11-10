@@ -97,7 +97,7 @@ export default class Order extends Component {
 		total:"",
 		isLoading:false,
 		endItem: {},
-		selectedIndex: []
+		selectedIndex: [],
 	}
 	componentWillMount(){
 		this.getData()
@@ -125,16 +125,25 @@ export default class Order extends Component {
 			}
 		})
 	}
-	// 结束订单
+	// 结束订单  (弹出订单框)
 	handleDone = () =>{
 		let selectedItem = this.state.selectedItem
 		if(selectedItem){
 			axios.get("/order/ebike_info",{id:selectedItem[0].id}).then(res=>{
 				this.setState({
 					endItem:res.result,
-					isShowModel:true
+					isShowModal:true
 				})
 			})
+		}else{
+			message.info("请选择一项订单进行操作")
+		}
+	}
+	// 订单详情
+	handleDetail = ()=>{
+		let item = this.state.selectedItem
+		if(item){
+			window.open(`/#/admin/orderDetail/${item[0].id}`,"_blank")
 		}else{
 			message.info("请选择一项订单进行操作")
 		}
@@ -237,7 +246,7 @@ export default class Order extends Component {
 				</Card>
 				<Card>
 					<div className="btn-find">
-						<Button type="primary" className="find">订单详情</Button>
+						<Button type="primary" className="find" onClick={this.handleDetail}>订单详情</Button>
 						<Button type="primary" onClick={this.handleDone}>结束订单</Button>
 					</div>
 				</Card>
@@ -255,21 +264,21 @@ export default class Order extends Component {
           			visible={this.state.isShowModal}
           			onOk={this.handleEnd}
           			onCancel={()=> this.setState({isShowModal:false})}>
-					<ul>
+					<ul className="modal">
 						<li>
-							<span>车辆编号</span>
+							<span>车辆编号 : </span>
 							{this.state.endItem.bike_sn}
 						</li>
 						<li>
-							<span>剩余电量</span>
+							<span>剩余电量 : </span>
 							{this.state.endItem.battery}
 						</li>
 						<li>
-							<span>行程开始时间</span>
+							<span>行程开始时间 : </span>
 							{this.state.endItem.start_time}
 						</li>
 						<li>
-							<span>当前位置</span>
+							<span>当前位置 : </span>
 							{this.state.endItem.location}
 						</li>
 					</ul>

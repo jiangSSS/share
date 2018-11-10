@@ -4,6 +4,7 @@ import {HashRouter,Route,Switch} from "react-router-dom"
 import Admin from "../views/admin/index"
 import Second from "../views/second/index.js"
 import Order from "../views/order/index.js"
+import OrderDetail from "../views/order/orderDetail.js"
 import NotMatch from "../views/notMatch/index"
 import Home from "../views/Home/home"
 import BarDemo from "../views/echarts/bar"
@@ -15,7 +16,7 @@ export default class Router extends Component{
             <HashRouter>
                 <div>
                     <Switch>
-                        {/* <Route path="/" exact component={Home}></Route> */}
+                        <Route path="/admin/orderDetail/:id" component={OrderDetail}></Route>
                         <Route path="/admin" render={()=>
                             <Admin>
                                 <Switch>
