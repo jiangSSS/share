@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 
 import {formDate} from "../../utils/index.js"
 import axios from "axios"
+import {connect} from "react-redux"
 
 
 class Header extends Component {
@@ -44,7 +45,9 @@ class Header extends Component {
                     </div>
                 </div>     
                 <div className="weather-warp">
-                    <div className="icon fll">首页</div>
+                    <div className="icon fll">
+                        {this.props.menuText}
+                    </div>
                     <div className="weather flr clearfix">
                         <div className="date fll">{this.state.time}</div>
                         <div className="weather-detail flr">{this.state.weather}</div>
@@ -57,4 +60,10 @@ class Header extends Component {
     }
 }
 
-export default Header
+export default connect(
+    function  mapStateToProps (state) {
+        return {
+            menuText: state.menuItemText
+        }
+    }
+)(Header)

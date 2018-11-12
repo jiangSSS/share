@@ -49,7 +49,7 @@ export default class OrderDetail extends Component{
         let startIcon = new BMap.Icon("/img/start_point.png", new BMap.Size(36, 41), { //新建一个icon      
 			imageSize: new BMap.Size(36, 41)
 		});
-		let endIcon = new BMap.Icon("/img/end_point.png", new BMap.Size(36, 41), {
+		let endIcon = new BMap.Icon("/img/end_point.png", new BMap.Size(36, 41), {    
 			imageSize: new BMap.Size(36, 41)
 		});
         let startMarker = new BMap.Marker(startBmapPoint,{ icon: startIcon })
@@ -61,13 +61,24 @@ export default class OrderDetail extends Component{
         var polyline = new BMap.Polyline(position_list.map(point =>{
             return new BMap.Point(point.lon,point.lat)
         }),
-            {strokeColor:"red", strokeWeight:3, strokeOpacity:0.7}
+            {strokeColor:"#000", strokeWeight:3, strokeOpacity:1}
             );
         map.addOverlay(polyline);
     }   
     // 绘制服务区
     drawServiceArea = (area)=>{
-        
+        const BMap = window.BMap
+        const map = this.map
+        let polygon = new BMap.Polygon(
+            area.map(point => new BMap.Point(point.lon,point.lat)),
+            {
+                strokeColor:"#F00",
+                strokeWeight:6,
+                fillColor:"#ff6700",
+                fillweight:0.1
+            }
+        )
+        map.addOverlay(polygon)
     }
     render(){
         return(
